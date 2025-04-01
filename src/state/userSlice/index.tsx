@@ -47,7 +47,9 @@ const userSlice = createSlice({
             state.user_id = action.payload
            
         },
-        
+        change_result:(state)=>{
+            state.result = ''
+        }
     },
     extraReducers:(builder)=>{
         builder.addCase(sendUsertoDB.pending,(state)=>{
@@ -76,7 +78,7 @@ const userSlice = createSlice({
 })
 
 
-export const {}  = userSlice.actions;
+export const {change_result}  = userSlice.actions;
 
 // export default userSlice.reducer;
 export default userSlice.reducer;

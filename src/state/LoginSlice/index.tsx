@@ -27,7 +27,7 @@ export const LoginUser = createAsyncThunk<string, payload>('LoginSlice',async(pa
     }
     try{
     const result  = await fetch(url , options)
-    console.log(result.status)
+    
     const result_text = await result.text()
     if(result.status === 200){
         
@@ -86,7 +86,8 @@ const LoginSlice = createSlice({
             Cookies.set('authToken', action.payload, {expires:1})
         })
         .addCase(LoginUser.rejected, (state, action:Payload<string>)=>{
-            state.loading= false
+            state.loading= false 
+            
             state.error_msg = action.payload
         })
     }

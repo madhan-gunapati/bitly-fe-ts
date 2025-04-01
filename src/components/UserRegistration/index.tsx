@@ -1,9 +1,9 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 
 
-import { sendUsertoDB } from "../../state/userSlice"
+import { change_result, sendUsertoDB } from "../../state/userSlice"
 import { AppDispatch, RootState } from "../../state/store"
 
 const UserRegistration = ()=>{
@@ -13,6 +13,7 @@ const UserRegistration = ()=>{
     const {loading, result }= useSelector((state:RootState)=>state.HomeSlice)
     
     const dispatch = useDispatch<AppDispatch>()
+    const navigate = useNavigate()
     
    const changeusername = (e:React.ChangeEvent<HTMLInputElement>)=>{
        changeUserDetails((p)=>({...p, name:e.target.value}))
@@ -30,6 +31,12 @@ const UserRegistration = ()=>{
         dispatch(sendUsertoDB(userDetails))
         
     } 
+    useEffect(()=>{
+        if(result === 'success'){
+            navigate('/login')
+            dispatch(change_result())
+        }
+    } , [result])
 
     
 

@@ -23,11 +23,11 @@ export const getShortUrl = createAsyncThunk<string, payload>('MiniurlSlice', asy
     }
     try{
     const response = await fetch(url, options)
-    const result_text = await response.text()
+    const result_text = await response.json()
     
     if(response.status === 200){
         
-        return result_text
+        return result_text.short_url
         }
         else{
 
@@ -64,7 +64,7 @@ const MiniurlSlice = createSlice({
         })
         .addCase(getShortUrl.fulfilled, (state, action)=>{
             state.loading = false
-            
+                
             state.short_url = action.payload
             
         })
