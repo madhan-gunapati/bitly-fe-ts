@@ -11,7 +11,7 @@ export const getShortUrl = createAsyncThunk<string, payload>('MiniurlSlice', asy
     
     const jwt_token = state.LoginSlice.jwt_token
     
-    const url = 'http://localhost:3000/short-url'
+    const url = 'http://ec2-16-171-193-231.eu-north-1.compute.amazonaws.com/short-url'
     const options = {
       method:'PUT',
       headers:{
@@ -64,7 +64,7 @@ const MiniurlSlice = createSlice({
         })
         .addCase(getShortUrl.fulfilled, (state, action)=>{
             state.loading = false
-                
+
             state.short_url = action.payload
             
         })
