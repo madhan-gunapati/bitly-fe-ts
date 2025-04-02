@@ -9,7 +9,7 @@ const RedirectionComponent = ()=>{
 
     useEffect( ()=>{
         const fetchData = async()=>{
-            const url = 'http://localhost:3000/redirection-url'
+            const url = 'http://ec2-16-171-193-231.eu-north-1.compute.amazonaws.com/redirection-url'
             const options = {
                 method:'PUT',
                 headers:{
@@ -23,9 +23,13 @@ const RedirectionComponent = ()=>{
             }
             try{
             const response = await fetch(url,options)
+            
             const redirec_url = await response.text()
             
-            window.open('https://'+redirec_url)
+            
+             window.open('https://'+redirec_url)
+           // window.open('www.youtube.com')
+          // window.location.href = 'www.google.com' ;
             }
             catch(e){
                 setErr('Error , Try Again .....')
