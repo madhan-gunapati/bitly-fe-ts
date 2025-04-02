@@ -42,19 +42,24 @@ const UserRegistration = ()=>{
 
     return <div>
        
-        <h1>User From</h1>
+        <h1 className="text-2xl text-center text-blue-600">User Form</h1>
         {loading? <p>Loading.....</p>:
-        <form onSubmit={(e)=>{e.preventDefault()}}>
-
-            <label htmlFor="name">Name</label>
-            <input id='name' type="text" onChange={changeusername} value={userDetails.name} /> <br />
+        <form className="flex flex-col items-center justify-start" onSubmit={(e)=>{e.preventDefault()}}>
+            <div className="flex flex-col">
+                <label htmlFor="name" className="text-start ">Name</label>
+                <input className="bg-gray-300 rounded-md p-2 m-1" id='name' type="text" onChange={changeusername} value={userDetails.name}  /> <br />
+            </div>
+            <div className="flex flex-col">
             <label htmlFor="email" >Email</label>
-            <input type="text" onChange={changeEmail} value={userDetails.email} /> <br />
-           <label htmlFor="password">Password</label>
-            <input type="password" id='password' value={userDetails.password} onChange={changePassword} /> 
-            <br />
-            <button type="button" onClick={submitDetails}>Register</button> <br />
-            <Link to='/login'><button type="button">Go to Login</button></Link>
+            <input  className="bg-gray-300 rounded-md p-2 m-1" type="text" onChange={changeEmail} value={userDetails.email} /> <br />
+            </div>
+            <div className="flex flex-col">
+                <label htmlFor="password">Password</label>
+                <input  className="bg-gray-300 rounded-md p-2 m-1" type="password" id='password' value={userDetails.password} onChange={changePassword} /> 
+            
+            </div>
+            <button  className="bg-blue-300 p-2 rounded-md m-1"  type="button" onClick={submitDetails}>Register</button> <br />
+            <Link to='/login'><button className="bg-blue-300 p-2 rounded-md m-1" type="button">Go to Login</button></Link>
             <p>{result}</p>
         </form>
 

@@ -34,18 +34,20 @@ const Login = ()=>{
     },[jwt_token])
 
         
-    return <div>
-        <h2>Login Form</h2>
-        <form onSubmit={(e)=>{
+    return <div className="w-screen flex flex-row justify-center ">
+        <div className=" flex flex-col align-middle">
+        <h2 className="text-xl text-center">Login Form</h2> 
+        <form className="flex flex-col justify-center" onSubmit={(e)=>{
             e.preventDefault()
         }}>
 
-        <input type="text" value={loginDetails.email} placeholder="email" onChange={changeEmail} /> <br />
-        <input type="password" value={loginDetails.password} placeholder="password" onChange={changePassword}/> <br />
-        <button type="button" onClick={()=>{dispatch(LoginUser({loginDetails}))}}>Login</button> <br />
-       <Link to='/register'> <button type="button">New User</button></Link>
+        <input className="h-6 border-2 p-3 m-1.5 " type="text" value={loginDetails.email} placeholder="email" onChange={changeEmail} /> <br />
+        <input className="h-6 border-2 p-3 m-1.5 " type="password" value={loginDetails.password} placeholder="password" onChange={changePassword}/> <br />
+        <button className="bg-blue-300 p-1.5 rounded-md  " type="button" onClick={()=>{dispatch(LoginUser({loginDetails}))}}>Login</button> <br />
+       <Link to='/register'> <button className="bg-blue-300 p-1.5 rounded-md m-1.5 w-full" type="button">New User</button></Link>
         </form>
         <p>{error_msg}</p>
+        </div>
     </div>
 }
 

@@ -28,19 +28,21 @@ const UrlSubmission = ()=>{
 
   
 
-    return <div>
-              <h4>Enter the Long link below and wait for the short url</h4>
-              <div id='url-input'>
-                    <input type="text" value={input_url} placeholder="link" onChange={changeUrl} /> <br />
+    return <div className="flex flex-col align-middle ">
+              <h4 className="text-center">Enter the Long link below and wait for the short url</h4>
+             <div className="flex flex-col    items-center ">
+              <div className="flex  flex-col  items-center justify-center" id='url-input'>
+                    <input className="p-2 rounded-md bg-gray-400 w-56 m-1" type="text" value={input_url} placeholder="Enter link here ..." onChange={changeUrl} /> <br />
                   
-                    <button type="button" onClick={()=>{dispatch(getShortUrl({input_url}))}}>Submit URL</button>
+                    <button className=" bg-blue-300 p-2 rounded-md" type="button" onClick={()=>{dispatch(getShortUrl({input_url}))}}>Submit URL</button>
                   
               </div>
-              <h3>Your Tiny Url : {short_url}</h3>
-
+              <h3 className="m-2 w-56 ">Your Tiny Url -: {short_url}</h3>
+              <p className="text-center">(will update vercel ext. with domain name like bitly)</p>
               <p>{error_msg}</p>
               
-              <button type="button" onClick={()=>{dispatch(remove_jwt_token())}}>LOGOUT USER</button>
+              <button  className="w-fit bg-blue-300 p-2 rounded-md" type="button" onClick={()=>{dispatch(remove_jwt_token())}}>LOGOUT USER</button>
+              </div>
               </div>
             
 }
