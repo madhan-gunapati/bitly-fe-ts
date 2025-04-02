@@ -25,9 +25,9 @@ const RedirectionComponent = ()=>{
             const response = await fetch(url,options)
             
             const redirec_url = await response.text()
-            
-            
-             window.open('https://'+redirec_url)
+           const final_url =  redirec_url.startsWith('https://')? redirec_url : 'https://'+redirec_url
+            console.log(final_url)
+             window.open(final_url)
            // window.open('www.youtube.com')
           // window.location.href = 'www.google.com' ;
             }
