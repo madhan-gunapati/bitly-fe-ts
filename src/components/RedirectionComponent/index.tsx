@@ -18,7 +18,7 @@ const RedirectionComponent = ()=>{
                     'Authorization':''
                 },
                 body:JSON.stringify({
-                    short_url: 'tiny/'+id
+                    short_url: 'bitly-fe-ts.vercel.app/'+id
                 })
             }
             try{
