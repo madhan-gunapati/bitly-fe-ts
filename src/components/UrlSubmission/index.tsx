@@ -38,7 +38,7 @@ const UrlSubmission = ()=>{
                   
               </div>
               <h3 className="m-2 w-56 ">Your Tiny Url -: {short_url}</h3>
-              <p className="text-center">(will update vercel ext. with domain name like bitly)</p>
+              <p className="text-center">(will update ip address with domain ,like bit.ly)</p>
               <p>{error_msg}</p>
               
               <button  className="w-fit bg-blue-300 p-2 rounded-md" type="button" onClick={()=>{dispatch(remove_jwt_token())}}>LOGOUT USER</button>
