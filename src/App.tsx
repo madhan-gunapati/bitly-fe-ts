@@ -11,7 +11,7 @@ const App = ()=>{
   
  
   return <div>
-     <h1 className="text-3xl m-1.5 text-center">Bitly URL Shortner</h1>
+     
      <Routes>
       <Route  Component={ProtectedRoute} >
         <Route path='/' Component={UrlSubmission} />

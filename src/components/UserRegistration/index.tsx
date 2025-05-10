@@ -2,70 +2,98 @@ import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { Link, useNavigate } from "react-router-dom"
 
-
 import { change_result, sendUsertoDB } from "../../state/userSlice"
 import { AppDispatch, RootState } from "../../state/store"
 
-const UserRegistration = ()=>{
+const UserRegistration = () => {
+    const [userDetails, changeUserDetails] = useState({ name: '', email: '', password: '' })
+    const { loading, result } = useSelector((state: RootState) => state.HomeSlice)
 
-   
-    const [userDetails, changeUserDetails] = useState({name:'', email:'', password:''})
-    const {loading, result }= useSelector((state:RootState)=>state.HomeSlice)
-    
     const dispatch = useDispatch<AppDispatch>()
     const navigate = useNavigate()
-    
-   const changeusername = (e:React.ChangeEvent<HTMLInputElement>)=>{
-       changeUserDetails((p)=>({...p, name:e.target.value}))
-   }
-    
-    const changeEmail = (e:React.ChangeEvent<HTMLInputElement>)=>{
-        changeUserDetails((p)=>({...p, email:e.target.value}))
+
+    const changeUsername = (e: React.ChangeEvent<HTMLInputElement>) => {
+        changeUserDetails(p => ({ ...p, name: e.target.value }))
     }
 
-    const changePassword = (e:React.ChangeEvent<HTMLInputElement>)=>{
-        changeUserDetails((p)=>({...p, password:e.target.value}))
+    const changeEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
+        changeUserDetails(p => ({ ...p, email: e.target.value }))
     }
 
-    const submitDetails = async ()=>{
+    const changePassword = (e: React.ChangeEvent<HTMLInputElement>) => {
+        changeUserDetails(p => ({ ...p, password: e.target.value }))
+    }
+
+    const submitDetails = async () => {
         dispatch(sendUsertoDB(userDetails))
-        
-    } 
-    useEffect(()=>{
-        if(result === 'success'){
+    }
+
+    useEffect(() => {
+        if (result === 'success') {
             navigate('/login')
             dispatch(change_result())
         }
-    } , [result])
+    }, [result])
 
-    
-
-    return <div>
-       
-        <h1 className="text-2xl text-center text-blue-600">User Form</h1>
-        {loading? <p>Loading.....</p>:
-        <form className="flex flex-col items-center justify-start" onSubmit={(e)=>{e.preventDefault()}}>
-            <div className="flex flex-col">
-                <label htmlFor="name" className="text-start ">Name</label>
-                <input className="bg-gray-300 rounded-md p-2 m-1" id='name' type="text" onChange={changeusername} value={userDetails.name}  /> <br />
+    return (
+        <div className="min-h-screen w-full bg-gradient-to-br from-green-100 via-blue-100 to-purple-100 flex items-center justify-center px-4">
+            <div className="w-full max-w-md bg-white p-8 rounded-2xl shadow-xl space-y-6">
+                <h1 className="text-3xl font-bold text-center text-indigo-600">Create Account</h1>
+                {loading ? (
+                    <p className="text-center text-gray-500">Registering user...</p>
+                ) : (
+                    <form className="flex flex-col space-y-4" onSubmit={(e) => e.preventDefault()}>
+                        <div>
+                            <label htmlFor="name" className="block text-sm font-medium text-gray-700">Name</label>
+                            <input
+                                id="name"
+                                type="text"
+                                value={userDetails.name}
+                                onChange={changeUsername}
+                                className="mt-1 p-3 w-full border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-400 focus:outline-none transition"
+                            />
+                        </div>
+                        <div>
+                            <label htmlFor="email" className="block text-sm font-medium text-gray-700">Email</label>
+                            <input
+                                id="email"
+                                type="text"
+                                value={userDetails.email}
+                                onChange={changeEmail}
+                                className="mt-1 p-3 w-full border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-400 focus:outline-none transition"
+                            />
+                        </div>
+                        <div>
+                            <label htmlFor="password" className="block text-sm font-medium text-gray-700">Password</label>
+                            <input
+                                id="password"
+                                type="password"
+                                value={userDetails.password}
+                                onChange={changePassword}
+                                className="mt-1 p-3 w-full border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-400 focus:outline-none transition"
+                            />
+                        </div>
+                        <button
+                            type="button"
+                            onClick={submitDetails}
+                            className="bg-indigo-500 text-white font-semibold py-3 rounded-lg hover:bg-indigo-600 transition"
+                        >
+                            Register
+                        </button>
+                        <Link to='/login'>
+                            <button
+                                type="button"
+                                className="w-full text-indigo-500 border border-indigo-500 py-3 rounded-lg hover:bg-indigo-50 transition"
+                            >
+                                Already have an account? Login
+                            </button>
+                        </Link>
+                        {result && <p className="text-center text-sm text-green-600">{result}</p>}
+                    </form>
+                )}
             </div>
-            <div className="flex flex-col">
-            <label htmlFor="email" >Email</label>
-            <input  className="bg-gray-300 rounded-md p-2 m-1" type="text" onChange={changeEmail} value={userDetails.email} /> <br />
-            </div>
-            <div className="flex flex-col">
-                <label htmlFor="password">Password</label>
-                <input  className="bg-gray-300 rounded-md p-2 m-1" type="password" id='password' value={userDetails.password} onChange={changePassword} /> 
-            
-            </div>
-            <button  className="bg-blue-300 p-2 rounded-md m-1"  type="button" onClick={submitDetails}>Register</button> <br />
-            <Link to='/login'><button className="bg-blue-300 p-2 rounded-md m-1" type="button">Go to Login</button></Link>
-            <p>{result}</p>
-        </form>
-
-       
-}
-    </div>
+        </div>
+    )
 }
 
 export default UserRegistration
