@@ -11,7 +11,7 @@ export const getShortUrl = createAsyncThunk<string, payload>('MiniurlSlice', asy
     
     const jwt_token = state.LoginSlice.jwt_token
     
-    const url = 'http://ec2-16-171-193-231.eu-north-1.compute.amazonaws.com/short-url'
+    const url = 'https://emjey.live/short-url'
     const options = {
       method:'PUT',
       headers:{
@@ -56,7 +56,11 @@ const MiniurlSlice = createSlice({
     name:'MiniurlSlice', 
     initialState, 
     reducers:{
-
+        
+        clearShortUrl:(state)=>{
+            state.short_url = null
+            state.error_msg = ''
+        }
     },
     extraReducers:(builder)=>{
         builder.addCase(getShortUrl.pending, (state)=>{
@@ -78,3 +82,4 @@ const MiniurlSlice = createSlice({
 })
 
 export default MiniurlSlice.reducer
+export const {clearShortUrl} = MiniurlSlice.actions

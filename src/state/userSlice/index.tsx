@@ -8,7 +8,7 @@ interface payload{
 export const sendUsertoDB = createAsyncThunk<string, payload>("data/fetch", async(payload, thunkApi)=>{
     
     const {name, email, password } = payload 
-    const url = 'http://ec2-16-171-193-231.eu-north-1.compute.amazonaws.com/user-registration'
+    const url = 'https://emjey.live/user-registration'
     const options = {
         method:'PUT', 
         headers:{

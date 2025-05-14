@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from "react-redux"
 import { Link } from "react-router-dom"
 
 import { getShortUrl } from "../../state/MiniurlSlice"
+
+import { clearShortUrl } from "../../state/MiniurlSlice"
 import { remove_jwt_token } from "../../state/LoginSlice"
 import { AppDispatch, RootState } from "../../state/store"
 
@@ -12,6 +14,7 @@ const UrlSubmission = () => {
   const dispatch = useDispatch<AppDispatch>()
 
   const changeUrl = (e: React.ChangeEvent<HTMLInputElement>) => {
+    dispatch(clearShortUrl())
     changeUrlState(e.target.value)
   }
 
@@ -25,7 +28,7 @@ const UrlSubmission = () => {
           className="w-full border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-indigo-400 transition"
           type="text"
           value={input_url}
-          placeholder="https://your-long-url.com"
+          placeholder="start with www"
           onChange={changeUrl}
         />
 
@@ -39,9 +42,9 @@ const UrlSubmission = () => {
 
         {short_url && (
           <div className="w-full text-center">
-            <p className="text-gray-700 font-medium">Your Tiny URL:</p>
-            <p className="text-indigo-600 font-bold break-all">{short_url}</p>
-            <p className="text-xs text-gray-500">(We'll soon replace this with a domain like bit.ly)</p>
+            <p className="text-gray-700 font-medium">Your Tiny URL: <span className="text-indigo-600 font-bold break-all">{short_url}</span></p>
+            {/* <p className="text-indigo-600 font-bold break-all">{short_url}</p> */}
+            <p className="text-xs text-gray-500">(will replace emejy.live with domain like bit.ly)</p>
           </div>
         )}
 

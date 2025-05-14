@@ -14,7 +14,7 @@ export const LoginUser = createAsyncThunk<string, payload>('LoginSlice',async(pa
     const {email , password} = payload.loginDetails
     
     
-    const url = 'http://ec2-16-171-193-231.eu-north-1.compute.amazonaws.com/login'
+    const url = 'https://emjey.live/login'
     const options = {
         method:'POST',
         headers:{

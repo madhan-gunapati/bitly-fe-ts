@@ -19,7 +19,7 @@ const App = ()=>{
       <Route path="/login" Component={Login} />
     <Route path="/register" Component={UserRegistration  } />
     
-    <Route path="/:id" Component={RedirectionComponent} />
+    {/* <Route path="/:id" Component={RedirectionComponent} /> */}
     </Routes>
    
     
